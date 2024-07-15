@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,7 @@ Route::view('/about-us', 'about')->name('about.index');
 
 Route::resource('categories', CategoryController::class);
 Route::get('category-status', [CategoryController::class, 'categoryStatus']);
+
+Route::resource('posts', PostController::class);
 
 require __DIR__.'/auth.php';
