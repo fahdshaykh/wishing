@@ -69,17 +69,16 @@
             <li class="active">
               <a href="/home" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
-            <li class="">
+            {{-- <li class="">
               <a class="nav-link" href="/contacts"><i data-feather="users"></i><span>Contacts</span></a>
-            </li>
+            </li> --}}
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>Categories</span></a>
-              {{-- <ul class="dropdown-menu">
-                <li><a class="nav-link" href="/bookings">Bookings</a></li>
-                <li><a class="nav-link" href="/category-create">Create category</a></li>
-                <li><a class="nav-link" href="/categories">Category list</a></li>
-              </ul> --}}
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ route('categories.index') }}">Category list</a></li>
+                <li><a class="nav-link" href="{{ route('categories.create') }}">Create category</a></li>
+              </ul>
             </li>
           </ul>
         </aside>
@@ -87,6 +86,7 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
+          @include('dashboard.layouts.flash_message')
             <div class="section-body">
                 @yield('content')
             </div>

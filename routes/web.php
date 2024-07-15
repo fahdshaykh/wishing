@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -35,5 +36,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::view('/post', 'post')->name('post.index');
 
 Route::view('/about-us', 'about')->name('about.index');
+
+Route::resource('categories', CategoryController::class);
+Route::get('category-status', [CategoryController::class, 'categoryStatus']);
 
 require __DIR__.'/auth.php';
