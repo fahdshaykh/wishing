@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{asset('admin/assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('admin/assets/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href="{{asset('admin/assets/img/favicon.ico')}}" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
 </head>
 
 <body>
@@ -110,6 +110,7 @@
     </div>
   </div>
   <!-- General JS Scripts -->
+  
   <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
   <!-- JS Libraies -->
   <script src="{{asset('admin/assets/bundles/jquery-ui/jquery-ui.min.js')}}"></script>

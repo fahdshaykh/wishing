@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th>Serrial.#</th>
+                            <th>Category</th>
                             <th>Title</th>
                             <th>Action</th>
                         </tr>
@@ -31,8 +32,8 @@
                     @foreach($posts as $row)
                         <tr>
                             <td>{{$serial}}</td>
+                            <td>{{$row->category->title}}</td>
                             <td>{{$row->title}}</td>
-                            
                             <td>
                             <div class="btn-group align-top">
                                 

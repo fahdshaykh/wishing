@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostQuote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -25,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create');
+        $categories = Category::where('status', true)->get();
+        return view('dashboard.posts.create', compact('categories'));
     }
 
     /**
@@ -45,9 +48,24 @@ class PostController extends Controller
 
         }
 
+        $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
+
+        
+        if($request->quote) {
+
+            foreach($request->quote as $quote) {
+
+                PostQuote::create([
+                    'quote' => $quote,
+                    'post_id' => $post->id,
+                ]);
+
+            }
+            
+        }
 
         session()->flash('status', 'New post was created!');
 
@@ -67,7 +85,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', ['post' => $post]);
+        $categories = Category::where('status', true)->get();
+
+        return view('dashboard.posts.edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -92,9 +115,26 @@ class PostController extends Controller
 
         }
 
+        $post->category_id = $request->category_id;
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
+
+        // dd($post->postQuotes);
+        $post->postQuotes()->delete();
+
+        if($request->quote) {
+
+            foreach($request->quote as $quote) {
+
+                PostQuote::create([
+                    'quote' => $quote,
+                    'post_id' => $post->id,
+                ]);
+
+            }
+            
+        }
 
 
 
