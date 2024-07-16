@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,5 +26,10 @@ class Post extends Model
     public function postQuotes()
     {
         return $this->hasMany(PostQuote::class);
+    }
+
+    public function scopeLatest(Builder $query)
+    {   
+        return $query->orderBy(static::CREATED_AT, 'desc'); 
     }
 }

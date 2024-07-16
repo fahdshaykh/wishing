@@ -24,6 +24,7 @@ use App\Http\Controllers\WelcomeController;
 // });
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/post-detail/{id?}', [WelcomeController::class, 'postDetail'])->name('welcome.show');
+Route::get('/category-posts/{id?}', [WelcomeController::class, 'welcome'])->name('category.posts');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
