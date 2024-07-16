@@ -5,44 +5,37 @@
 @section('content')
 
 <div class="row tm-row">
+    @foreach ($posts as $post)
     <article class="col-12 col-md-6 tm-post">
         <hr class="tm-hr-primary">
-        <a href="{{ route('post.index') }}" class="effect-lily tm-post-link tm-pt-60">
+        <a href="{{ route('welcome.show', $post->id) }}" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
-                <img src="{{ asset('frontend/img/img-01.jpg') }}" alt="Image" class="img-fluid">                            
+                <img src="{{ asset('post_images').'/'.$post->image }}" alt="Image" class="img-fluid">                            
             </div>
             <span class="position-absolute tm-new-badge">New</span>
-            <h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
+            <h2 class="tm-pt-30 tm-color-primary tm-post-title"> {{ $post->title }} </h2>
         </a>                    
         <p class="tm-pt-30">
-            There is a clickable image with beautiful hover effect and active title link for each post item. 
-            Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
+
+            @php
+                $words = explode(' ', $post->content);
+                $firstPart = implode(' ', array_slice($words, 0, 50));
+            @endphp
+
+            {!! $firstPart !!}
+
+            @if (count($words) > 50)
+                ... <a href="{{ route('welcome.show', $post->id) }}">Read More</a>
+            @endif
+
         </p>
         <div class="d-flex justify-content-between tm-pt-45">
-            <span class="tm-color-primary">June 24, 2020</span>
+            <span class="tm-color-primary"> {{ $post->created_at->diffForHumans(); }} </span>
         </div>
         <hr>
         
     </article>
-    <article class="col-12 col-md-6 tm-post">
-        <hr class="tm-hr-primary">
-        <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
-            <div class=" tm-post-link-inner">
-                <img src="{{ asset('frontend/img/img-02.jpg') }}" alt="Image" class="img-fluid">                            
-            </div>
-            <span class="position-absolute tm-new-badge">New</span>
-            <h2 class="tm-pt-30 tm-color-primary tm-post-title">Multi-purpose blog template</h2>
-        </a>                    
-        <p class="tm-pt-30">
-            <a rel="nofollow" href="https://templatemo.com/tm-553-xtra-blog" target="_blank">Xtra Blog</a>  is a multi-purpose HTML CSS template from TemplateMo website. 
-            Blog list, single post, about, contact pages are included. Left sidebar fixed width and content area is a fluid full-width.
-        </p>
-        <div class="d-flex justify-content-between tm-pt-45">
-            <span class="tm-color-primary">June 16, 2020</span>
-        </div>
-        <hr>
-
-    </article>
+    @endforeach
 </div>
 <div class="row tm-row tm-mt-100 tm-mb-75">
     <div class="tm-prev-next-wrapper">

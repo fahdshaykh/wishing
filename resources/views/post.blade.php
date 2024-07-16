@@ -2,38 +2,61 @@
 
 @section('title','Welcome on wishing')
 
+
 @section('content')
 <div class="row tm-row">
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
-        <img src="{{ asset('frontend/img/img-01.jpg') }}" width="954" height="535" alt="Image" class="tm-mb-40 img-fluid">   
+        <img src="{{ asset('post_images').'/'.$post->image }}" width="954" height="535" alt="Image" class="tm-mb-40 img-fluid">   
     </div>
 </div>
 <div class="row tm-row">
     <div class="col-lg-12 tm-post-col">
         <div class="">                    
             <div class="mb-4">
-                <h2 class="pt-2 tm-color-primary tm-post-title">Single Post of Xtra Blog HTML Template</h2>
-                <p class="tm-mb-40">June 16, 2020 posted by Admin Nat</p>
+                <h2 class="pt-2 tm-color-primary tm-post-title"> {{ $post->title }} </h2>
+                <p class="tm-mb-40"> {{ $post->created_at->diffForHumans(); }} </p>
                 <p>
-                    This is a description of the video post. You can also have an image instead of
-                    the video. You can free download 
-                    from TemplateMo website. Phasellus maximus quis est sit amet maximus. Vestibulum vel rutrum
-                    lorem, ac sodales augue. Aliquam erat volutpat. Duis lectus orci, blandit in arcu
-                    est, elementum tincidunt lectus. Praesent vel justo tempor, varius lacus a,
-            pharetra lacus. </p>
-                <p>
-                    Duis pretium efficitur nunc. Mauris vehicula nibh nisi. Curabitur gravida neque
-                    dignissim, aliquet nulla sed, condimentum nulla. Pellentesque id venenatis
-                    quam, id cursus velit. Fusce semper tortor ac metus iaculis varius. Praesent
-                    aliquam ex vel lectus ornare tristique. Nunc et eros quis enim feugiat tincidunt
-                    et vitae dui.
+                    {{ $post->content }}
                 </p>
             </div>
             
             <!-- Comments -->
+
+            @foreach ($post->postQuotes as $post)
+              <div class="box">
+                <p id="quotation-{{$post->id}}" class="quote-text"> {{ $post->quote }} </p>
+                <button class="button" type="button" onClick="copyToClipboard('#quotation-{{$post->id}}')" style="margin-top: -5%;float: right;">
+                  <img src="https://s2.svgbox.net/octicons.svg?ic=copy" alt="Icon">
+                </button>
+              </div>
+            @endforeach
             
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+
+// COPY TO CLIPBOARD
+function copyToClipboard(textSelector) {
+  const textToCopy = document.querySelector(textSelector);
+  const selection = window.getSelection();
+  const range = document.createRange();
+  
+  range.selectNodeContents(textToCopy);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  
+  document.execCommand('copy');
+  selection.removeAllRanges();
+
+  // Custom feedback
+  alert('Text copied: ' + textToCopy.textContent);
+}
+
+</script>
+
 @endsection
