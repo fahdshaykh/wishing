@@ -23,7 +23,7 @@
             
             <!-- Comments -->
 
-            @foreach ($post->postQuotes as $post)
+            @foreach ($post->quotes as $post)
               <div class="box">
                 <p id="quotation-{{$post->id}}" class="quote-text"> {{ $post->quote }} </p>
                 <button class="button" type="button" onClick="copyToClipboard('#quotation-{{$post->id}}')" style="margin-top: -5%;float: right;">

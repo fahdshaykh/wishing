@@ -17,7 +17,7 @@
                     @csrf
                     @method('PUT')
                 <div class="card-header">
-                    <h4>Create Booking</h4>
+                    <h4>Edit Category</h4>
                 </div>
                 <div class="card-body">
                     <div class="form-group">

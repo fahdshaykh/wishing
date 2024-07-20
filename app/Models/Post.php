@@ -23,7 +23,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function postQuotes()
+    public function quotes()
     {
         return $this->hasMany(PostQuote::class);
     }

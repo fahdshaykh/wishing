@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Movers and Packaers</title>
+  <title>Wishing Quotes</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('admin/assets/css/app.min.css')}}">
   <!-- Template CSS -->
@@ -66,28 +66,31 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
-            <li class="active">
+            <li class="{{(request()->is('dashboard') ? 'active' : '' )}}">
               <a href="/dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
             {{-- <li class="">
               <a class="nav-link" href="/contacts"><i data-feather="users"></i><span>Contacts</span></a>
             </li> --}}
-            <li class="dropdown">
+
+            <li class="dropdown {{( (request()->is('categories*')) ? 'active' : '' )}}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>Categories</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{ route('categories.index') }}">Category list</a></li>
-                <li><a class="nav-link" href="{{ route('categories.create') }}">Create category</a></li>
+                <li class="{{( request()->is('categories') ? 'active' : '' )}}"><a class="nav-link" href="{{ route('categories.index') }}">Category list</a></li>
+                <li class="{{( request()->is('categories/create') ? 'active' : '' )}}"><a class="nav-link" href="{{ route('categories.create') }}">Create category</a></li>
               </ul>
             </li>
-            <li class="dropdown">
+
+            <li class="dropdown {{( (request()->is('posts*')) ? 'active' : '' )}}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>Posts</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{ route('posts.index') }}">Post list</a></li>
-                <li><a class="nav-link" href="{{ route('posts.create') }}">Create post</a></li>
+                <li class="{{( (request()->is('posts')) ? 'active' : '' )}}"><a class="nav-link" href="{{ route('posts.index') }}">Post list</a></li>
+                <li class="{{( (request()->is('posts/create')) ? 'active' : '' )}}"><a class="nav-link" href="{{ route('posts.create') }}">Create post</a></li>
               </ul>
             </li>
+
           </ul>
         </aside>
       </div>

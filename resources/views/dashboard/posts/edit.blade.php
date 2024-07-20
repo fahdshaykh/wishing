@@ -17,7 +17,7 @@
                     @csrf
                     @method('PUT')
                 <div class="card-header">
-                    <h4>Create Booking</h4>
+                    <h4>Edit Post</h4>
                 </div>
                 <div class="card-body">
 
@@ -47,7 +47,7 @@
                     
                     <div id="items" class="form-group">
                         <label class="col-md-12 control-label" for="textinput">Quotes</label>
-                        @foreach ($post->postQuotes as $quote)
+                        @foreach ($post->quotes as $quote)
                         <div class="col-md-12 margin-bottom">
                             <input id="textinput" name="quote[]" value="{{ $quote->quote }}" type="text" placeholder="Enter quotes" class="form-control input-md mt-2" required="">
                         </div>

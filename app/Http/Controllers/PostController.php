@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'DESC')->get();
 
         return view('dashboard.posts.index', ['posts' => $posts]);
     }

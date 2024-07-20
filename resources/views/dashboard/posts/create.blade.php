@@ -16,7 +16,7 @@
                 <form method="post" action="{{ route('posts.store') }}" class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-header">
-                    <h4>Create Booking</h4>
+                    <h4>Create Post</h4>
                 </div>
                 <div class="card-body">
 

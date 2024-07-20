@@ -16,7 +16,7 @@
                 <form method="post" action="{{ route('categories.store') }}" class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
                     @csrf
                 <div class="card-header">
-                    <h4>Create Booking</h4>
+                    <h4>Create Category</h4>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
