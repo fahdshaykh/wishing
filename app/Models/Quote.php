@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostQuote extends Model
+class Quote extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'post_id',
-        'quote'
+        'quote',
+        'order'
     ];
 
     public function post()
     {
         return $this->belongsTo(Post::class);
     }
+
 }

@@ -25,7 +25,7 @@ class Post extends Model
 
     public function quotes()
     {
-        return $this->hasMany(PostQuote::class);
+        return $this->hasMany(Quote::class);
     }
 
     public function scopeLatest(Builder $query)

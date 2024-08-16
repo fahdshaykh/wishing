@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_quotes', function (Blueprint $table) {
+        Schema::create('quotes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained();
-            $table->string('quote');
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->longText('quote')->nullable();
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_quotes');
+        Schema::dropIfExists('quotes');
     }
 };

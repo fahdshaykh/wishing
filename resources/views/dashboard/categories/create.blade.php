@@ -2,9 +2,7 @@
 
 @section('script')
 
-<script src="{{asset('admin/assets/bundles/datatables/datatables.min.js')}}"></script>
-<script src="{{asset('admin/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/page/datatables.js')}}"></script>
+
 
 @endsection
 

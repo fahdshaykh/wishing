@@ -3,8 +3,10 @@
         <i class="fas fa-bars"></i>
     </button>
     <div class="tm-site-header">
-        <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
-        <h1 class="text-center">Wish Quotes</h1>
+        <a href="{{ url('/') }}">
+            <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
+        </a>            
+            <h1 class="text-center">Wish Quotes</h1>
     </div>
     <nav class="tm-nav" id="tm-nav">            
         <ul>
@@ -14,6 +16,20 @@
             </a></li>
         </ul>
     </nav>
+
+    <aside class="col-lg-12 tm-aside-col">
+        <div class="tm-post-sidebar">
+            <hr class="mb-3 tm-hr-primary">
+            <h2 class="mb-4 tm-post-title">Categories</h2>
+            <ul class="tm-mb-75 pl-2 tm-category-list">
+                @foreach ($categories as $category)
+                    <li><a href="{{ route('category.posts', $category->id) }}" class="wishing-color-primary"> {{ $category->title }} </a></li>
+                @endforeach
+            </ul>
+            <hr class="mb-3 tm-hr-primary">
+                              
+    </aside>
+
     <div class="tm-mb-65">
         <a rel="nofollow" href="https://fb.com/templatemo" class="tm-social-link">
             <i class="fab fa-facebook tm-social-icon"></i>
@@ -28,17 +44,4 @@
             <i class="fab fa-linkedin tm-social-icon"></i>
         </a>
     </div>
-
-    <aside class="col-lg-12 tm-aside-col">
-        <div class="tm-post-sidebar">
-            <hr class="mb-3 tm-hr-primary">
-            <h2 class="mb-4 tm-post-title">Categories</h2>
-            <ul class="tm-mb-75 pl-2 tm-category-list">
-                @foreach ($categories as $category)
-                    <li><a href="{{ route('category.posts', $category->id) }}" class="wishing-color-primary"> {{ $category->title }} </a></li>
-                @endforeach
-            </ul>
-            <hr class="mb-3 tm-hr-primary">
-                              
-    </aside>
 </div>

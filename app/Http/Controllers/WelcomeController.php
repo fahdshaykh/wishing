@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -27,7 +28,11 @@ class WelcomeController extends Controller
 
         $post = Post::findOrFail($id);
 
-        return view('post', compact('post','categories'));
+        $quotes = Quote::where('post_id', $post->id)
+                   ->orderBy('order', 'asc')
+                   ->get();
+
+        return view('post', compact('post','quotes','categories'));
     }
 
     public function search(Request $request)

@@ -6,7 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\PostQuote;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -56,11 +56,12 @@ class PostController extends Controller
         
         if($request->quote) {
 
-            foreach($request->quote as $quote) {
+            foreach($request->quote as $key=>$quote) {
 
-                PostQuote::create([
-                    'quote' => $quote,
+                $quote_id = Quote::create([
                     'post_id' => $post->id,
+                    'quote' => $quote,
+                    'order' => $key
                 ]);
 
             }
@@ -87,8 +88,13 @@ class PostController extends Controller
     {
         $categories = Category::where('status', true)->get();
 
+        $quotes = Quote::where('post_id', $post->id)
+                   ->orderBy('order', 'asc')
+                   ->get();
+
         return view('dashboard.posts.edit', [
             'post' => $post,
+            'quotes' => $quotes,
             'categories' => $categories
         ]);
     }
@@ -120,16 +126,18 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->save();
 
-        // dd($post->postQuotes);
-        $post->postQuotes()->delete();
+        
+
+        Quote::where('post_id', $post->id)->delete();
 
         if($request->quote) {
 
-            foreach($request->quote as $quote) {
+            foreach($request->quote as $key => $quote) {
 
-                PostQuote::create([
+                Quote::create([
                     'quote' => $quote,
                     'post_id' => $post->id,
+                    'order' => $key
                 ]);
 
             }
