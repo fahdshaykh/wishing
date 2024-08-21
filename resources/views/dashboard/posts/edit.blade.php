@@ -31,9 +31,11 @@
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" value="{{old('title', $post->title)}}" class="form-control" required="">
-                        <div class="invalid-feedback">
-                            Enter Customer name.
+                        @error('title')
+                        <div class="invalid-message">
+                            {{ $errors->first('title') }}
                         </div>
+                        @enderror
                     </div>
 
                     <div class="form-group mb-2">
