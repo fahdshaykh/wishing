@@ -7,6 +7,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,33 +20,30 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
-Route::get('/post-detail/{id?}', [WelcomeController::class, 'postDetail'])->name('welcome.show');
-Route::get('/category-posts/{id?}', [WelcomeController::class, 'welcome'])->name('category.posts');
-Route::get('/search-posts', [WelcomeController::class, 'search'])->name('search.posts');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::view('/post', 'post')->name('post.index');
+Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
+Route::get('/{slug?}', [WelcomeController::class, 'postDetail'])->name('welcome.show');
+Route::get('/category/{slug?}', [WelcomeController::class, 'welcome'])->name('category.posts');
+Route::get('/', [WelcomeController::class, 'search'])->name('search.posts');
 
 Route::view('/about-us', 'about')->name('about.index');
 
-Route::resource('categories', CategoryController::class);
-Route::get('category-status', [CategoryController::class, 'categoryStatus']);
+Route::prefix('admin')->group(function () {
+    // Login Routes
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+        ->name('admin.login'); // name it as 'admin.login' for specificity
+    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
 
-Route::resource('posts', PostController::class);
+    // Dashboard Route
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('admin.dashboard');
 
-require __DIR__.'/auth.php';
+    Route::resource('categories', CategoryController::class);
+    Route::get('category-status', [CategoryController::class, 'categoryStatus']);
+    
+    Route::resource('posts', PostController::class);
+});
+// require __DIR__.'/auth.php';

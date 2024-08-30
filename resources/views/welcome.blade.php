@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Welcome on wishing')
+@section('title','Welcome to Wisherpro')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     @foreach ($posts as $post)
     <article class="col-12 col-md-6 tm-post">
         <hr class="tm-hr-primary">
-        <a href="{{ route('welcome.show', $post->id) }}" class="effect-lily tm-post-link tm-pt-60">
+        <a href="{{ route('welcome.show', $post->slug) }}" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
                 <img src="{{ asset('post_images').'/'.$post->image }}" alt="Image" class="img-fluid">                            
             </div>
@@ -25,7 +25,7 @@
             {!! $firstPart !!}
 
             @if (count($words) > 25)
-                ... <a href="{{ route('welcome.show', $post->id) }}">Read More</a>
+                ... <a href="{{ route('welcome.show', $post->slug) }}">Read More</a>
             @endif
 
         </p>

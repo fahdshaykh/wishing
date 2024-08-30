@@ -38,6 +38,16 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" name="slug" value="{{old('slug', $post->slug)}}" placeholder="wish-me-slug" class="form-control" required="">
+                        @error('slug')
+                        <div class="invalid-message">
+                            {{ $errors->first('slug') }}
+                        </div>
+                        @enderror
+                    </div>
+
                     <div class="form-group mb-2">
                         <label>Content</label>
                         <textarea class="form-control summernote" name="content">{{ $post->content }}</textarea>

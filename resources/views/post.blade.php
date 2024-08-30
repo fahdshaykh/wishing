@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Welcome on wishing')
+@section('title', "$post->title | Wisherpro")
 
 
 @section('content')

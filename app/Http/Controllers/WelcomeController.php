@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    public function welcome($id = null)
+    public function welcome($slug = null)
     {
         $categories = Category::where('status', true)->get();
 
-        if($id){
-            $posts = Post::latest()->where('category_id', $id)->paginate(10);
+        if($slug){
+            $category = Category::where('slug', $slug)->first();
+            $posts = Post::latest()->where('category_id', $category->id)->paginate(10);
         } else {
             $posts = Post::latest()->paginate(10);
         }
@@ -22,11 +23,12 @@ class WelcomeController extends Controller
         return view('welcome', compact('posts','categories'));
     }
 
-    public function postDetail($id)
+    public function postDetail($slug)
     {
         $categories = Category::where('status', true)->get();
 
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->first();
+        // dd($post);
 
         $quotes = Quote::where('post_id', $post->id)
                    ->orderBy('order', 'asc')

@@ -23,7 +23,7 @@
             <h2 class="mb-4 tm-post-title">Categories</h2>
             <ul class="tm-mb-75 pl-2 tm-category-list">
                 @foreach ($categories as $category)
-                    <li><a href="{{ route('category.posts', $category->id) }}" class="wishing-color-primary"> {{ $category->title }} </a></li>
+                    <li><a href="{{ route('category.posts', $category->slug) }}" class="wishing-color-primary"> {{ $category->title }} </a></li>
                 @endforeach
             </ul>
             <hr class="mb-3 tm-hr-primary">

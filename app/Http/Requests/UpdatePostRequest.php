@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -24,6 +25,12 @@ class UpdatePostRequest extends FormRequest
         return [
             'category_id'   => 'required',
             'title' => 'required|min:10|max:255',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('posts', 'slug')->ignore($this->route('post')), // Unique validation with exclusion
+            ],
             'content' => 'nullable',
             'image' => 'nullable'
         ];

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -18,6 +19,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => fake()->sentence(10),
+            'slug' => Str::slug(fake()->sentence(3)),
             'content' => fake()->paragraph(10, true),
         ];
     }

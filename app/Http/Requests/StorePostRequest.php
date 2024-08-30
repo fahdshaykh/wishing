@@ -24,6 +24,7 @@ class StorePostRequest extends FormRequest
         return [
             'category_id'   => 'required',
             'title' => 'required|min:10|max:255',
+            'slug' => 'required|string|max:255|unique:posts,slug', // Unique validation for the slug
             'content' => 'nullable',
             'image' => 'nullable'
         ];

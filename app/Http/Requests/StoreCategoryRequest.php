@@ -23,6 +23,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|min:4|max:255',
+            'slug' => 'required|string|max:255|unique:categories,slug', // Unique validation for the slug
             'content' => 'nullable',
             'status' => '1',
         ];
