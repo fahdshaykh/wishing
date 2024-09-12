@@ -10,7 +10,7 @@
         <hr class="tm-hr-primary">
         <a href="{{ route('welcome.show', $post->slug) }}" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
-                <img src="{{ asset('post_images').'/'.$post->image }}" alt="Image" class="img-fluid">                            
+                <img src="{{ asset('post_images').'/'.$post->image }}" alt="{{ $post->slug }}" class="img-fluid">                            
             </div>
             
             <h2 class="tm-pt-30 tm-color-primary tm-post-title"> {{ $post->title }} </h2>

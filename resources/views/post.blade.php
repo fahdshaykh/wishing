@@ -7,7 +7,7 @@
 <div class="row tm-row">
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-55">
-        <img src="{{ asset('post_images').'/'.$post->image }}" width="954" height="535" alt="Image" class="tm-mb-40 img-fluid">   
+        <img src="{{ asset('post_images').'/'.$post->image }}" width="954" height="535" alt="{{ $post->slug }}" class="tm-mb-40 img-fluid">   
     </div>
 </div>
 <div class="row tm-row">
